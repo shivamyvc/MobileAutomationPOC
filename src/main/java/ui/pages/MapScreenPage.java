@@ -11,7 +11,6 @@ public class MapScreenPage extends MobileUtility{
 	private static By MAP_SEARCH_BUTTON= AppiumBy.accessibilityId("On map button - search");
 	
 	public AccountPage goToAccount() {
-	
 		click(ACCOUNT_MENU);
 		return new AccountPage();
 	}
