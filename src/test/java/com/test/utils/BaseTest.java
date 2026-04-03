@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
 import com.drivers.DriverManager;
+import com.utils.ConfigReader;
 
 public class BaseTest {
 	@BeforeSuite(alwaysRun = true)
@@ -17,7 +18,7 @@ public class BaseTest {
 	@BeforeMethod(alwaysRun = true)
 	public void testMethodSetup() {
 		System.out.println("setting up Drivers");
-		DriverManager.createDriver("andrOid");
+		DriverManager.createDriver(ConfigReader.getProperty("mobile.platformName"));
 		
 	}
 	

@@ -2,9 +2,8 @@ package ui.pages;
 
 import org.openqa.selenium.By;
 
-import com.page.utils.MobileUtility;
-
 import io.appium.java_client.AppiumBy;
+import ui.base.utils.MobileUtility;
 
 public class MapScreenPage extends MobileUtility{
 	private static  By ACCOUNT_MENU=  AppiumBy.accessibilityId("account button tappable"); 
