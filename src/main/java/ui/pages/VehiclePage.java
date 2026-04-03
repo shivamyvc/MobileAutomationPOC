@@ -5,9 +5,8 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
-import com.page.utils.MobileUtility;
-
 import io.appium.java_client.AppiumBy;
+import ui.base.utils.MobileUtility;
 
 public class VehiclePage extends MobileUtility {
 

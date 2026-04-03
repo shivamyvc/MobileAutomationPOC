@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Regression Suite">
+
+	<test name="Vehichle Detail Modification">
+
+		<classes>
+			<class name="com.dryRUn.TestRun"></class>
+		</classes>
+
+	</test>
+
+</suite>

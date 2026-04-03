@@ -1,12 +1,17 @@
-package com.page.utils;
+package ui.base.utils;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.time.Duration;
 import java.util.Collections;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.PointerInput;
@@ -24,11 +29,13 @@ public abstract class MobileUtility {
 
 	protected AppiumDriver driver;
 	protected ThreadLocal<WebDriverWait> wait = new ThreadLocal<WebDriverWait>();
+	protected ThreadLocal<TakesScreenshot> screenshot= new ThreadLocal<TakesScreenshot>();
 
 	public MobileUtility() {
 
 		this.driver = DriverManager.getDriver();
 		this.wait.set(new WebDriverWait(driver, Duration.ofSeconds(35)));
+		this.screenshot.set(((TakesScreenshot) driver));
 	}
 
 	protected void click(By by) {
@@ -72,7 +79,7 @@ public abstract class MobileUtility {
 	    throw new RuntimeException("Element not found after " + maxScrolls + " scrolls: " + by.toString());
 	}
 
-	public void performScrollDown() {
+	protected void performScrollDown() {
 	    Dimension size = driver.manage().window().getSize();
 	    int startX = size.getWidth() / 2;
 	    int startY = (int) (size.getHeight() * 0.7); // Start at 80% height (bottom)
@@ -88,8 +95,23 @@ public abstract class MobileUtility {
 
 	    driver.perform(Collections.singletonList(scroll));
 	}
-
-
+	
+	
+	protected void capturScreenshot(String screenShotName) {
+		File source= screenshot.get().getScreenshotAs(OutputType.FILE);
+		
+		File destination= new File("screenShot/"+screenShotName);
+		try {
+			FileUtils.copyFile(source, destination);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Unable to cpature the screenshot");
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
 
 
 	}
